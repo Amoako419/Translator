@@ -5,14 +5,14 @@ from transformers import T5ForConditionalGeneration, T5Tokenizer
 @st.cache_resource
 def load_model():
     model_name = "t5-small"
-    tokenizer = T5Tokenizer.from_pretrained(model_name)
+    tokenizer = T5Tokenizer.from_pretrained(model_name,legacy=False)
     model = T5ForConditionalGeneration.from_pretrained(model_name)
     return model, tokenizer
 
 model, tokenizer = load_model()
 
 # Function to split text into chunks
-def split_text_into_chunks(text, max_tokens=500):
+def split_text_into_chunks(text, max_tokens=512):
     words = text.split()
     chunks = []
     current_chunk = []
